@@ -1,14 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Single+Day&family=Teko:wght@300;400;500;600;700&display=swap');
+
+html {
+	font-size: large;
+}
+
+body {
+	font-family: 'Single Day', cursive;
+	background-color: hsl(118, 39%, 66%);
+}
+
 .wrapper {
-	width: 800px;
+	/* width: 800px; */
+	max-width: 1280px;
 	margin: 0 auto;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	/* grid-template-rows: repeat(4, 1fr); */
+	grid-template-areas:
+	"header header header"
+	"transition transform animate";
+	gap: 15px;
+}
+
+h1 {
+	grid-area: header;
+}
+
+.transition {
+	grid-area: transition;
+}
+
+.transform {
+	grid-area: transform;
+}
+
+.animation {
+	grid-area: animate;
 }
 
 .transform,
 .transition,
 .animation {
-	border: 1px solid #999;
+	border: 1px solid black;
 	margin: 20px 0;
-	padding: 0 0;
+	padding: 5px;
+	border-radius: 8px;
+	background-color: white;
+}
+
+div h2,
+div p {
+	text-align: center;
 }
 
 .box {
@@ -34,4 +76,175 @@
 .b4 {
 	background-color: #e89380;
 	/*orange*/
+}
+
+/* CSS Transitions */
+
+.transition .b1 {
+	transition: width 1000ms;
+}
+
+.transition .b1:hover {
+	width: 400px;
+}
+
+.transition .b2 {
+	transition: width 1000ms, height 500ms;
+	transition-delay: 0.5s;
+	transition-timing-function: ease-in;
+}
+
+.transition .b2:hover {
+	width: 250px;
+	height: 250px;
+}
+
+.transition .b3 {
+	transition: transform 1s cubic-bezier(0,1.1,1,.46) 0.5s;
+}
+
+.transition .b3:hover {
+	transform: rotate(80deg);
+}
+
+.transition .b4 {
+	transition: all 1s ease-in;
+}
+
+.transition .b4:hover {
+	border-radius: 30px;
+	background-color: #CC80CC;
+	width: 400px;
+}
+
+/* CSS Transform */
+
+.transform .box {
+	transition: all 1s ease-in;
+}
+
+.transform .b1:hover {
+	transform: translate(20px, 30px);
+}
+
+.transform .b2:hover {
+	transform: scale(1.3);
+}
+
+.transform .b3 {
+	transform-origin: right top;
+}
+
+.transform .b3:hover {
+	transform: rotate(45deg);
+	/* transform-origin: right top; */
+}
+
+.transform .b4 {
+	transform: skewX(0) skewY(0);
+}
+
+.transform .b4:hover {
+	transform: skewX(45deg) skewY(30deg);
+}
+
+/* CSS Animation */
+
+@keyframes anitaMaxWynn {
+	from {
+		background-color: #CC80CC;
+	}
+
+	to {
+		background-color: #e89380;
+	}
+}
+
+.animation .b1 {
+	animation-name: anitaMaxWynn;
+	animation-duration: 2s;
+	animation-delay: 2s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes getJiggy {
+	0% {
+		transform: translate(0, 0);
+	}
+
+	25% {
+		transform: translate(200px, 0);
+	}
+
+	50% {
+		transform: translate(200px, 200px);
+	}
+
+	75% {
+		transform: translate(0, 200px);
+	}
+
+	100% {
+		transform: translate(0, 0);
+	}
+}
+
+.animation .b2 {
+	animation: getJiggy 4s;
+	animation-delay: 2s;
+	animation-iteration-count: 3;
+	animation-direction: reverse;
+}
+
+@keyframes transformOptimus {
+	0% {
+		transform: scale(0.5) rotateX(0) translateX(0);
+	}
+
+	100% {
+		transform: scale(1.2) rotateX(180deg) translateX(600px);
+	}
+}
+
+.animation .b3 {
+	animation: transformOptimus 1.5s ease-in-out 2s 12 alternate forwards;
+}
+
+.animation .b3:hover {
+	animation-play-state: paused;
+}
+
+@keyframes seizure {
+	0% {
+		background-color: #de5d83;
+		transform: translate(0, 0);
+	}
+
+	50% {
+		background-color: #89cff0;
+		transform: translate(-5px, 5px);
+	}
+
+	100% {
+		background-color: chartreuse;
+		transform: translate(5px, -5px);
+	}
+
+	25% {
+		background-color: chocolate;
+		transform: translate(-5px, -5px);
+	}
+
+	75% {
+		background-color: violet;
+		transform: translate(5px, 5px);
+	}
+}
+
+.animation .b4 {
+	animation: seizure 0.4s ease 0s infinite normal forwards;
+}
+
+.animation .b4:hover {
+	animation-play-state: paused;
 }
